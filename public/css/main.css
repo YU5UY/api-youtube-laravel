@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal&display=swap");
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+:root {
+    --main-color: #171717;
+    --second-color: #444444;
+    --third-color: #da0037;
+    --third-color-opacity: #da0037bd;
+    --forth-color: #ededed;
+}
+
+body {
+    background-color: var(--main-color);
+    color: var(--forth-color);
+    font-family: "Tajawal", sans-serif;
+}
+
+header {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas: ". logo logo . urls urls urls";
+    text-align: center;
+    padding: 10px 0;
+}
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    grid-area: urls;
+}
+ul li {
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+}
+ul li::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border: 1px solid var(--third-color);
+    width: 0%;
+    transition: 0.5s width, 0.5s left;
+}
+ul li:hover::before {
+    width: 50%;
+    left: 25%;
+}
+.main {
+    position: relative;
+    padding: 5px;
+    grid-area: logo;
+}
+.main::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 25%;
+    border: 1px solid var(--third-color);
+    width: 50%;
+}
+section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+footer {
+    background-color: var(--second-color);
+    border-top: 1px solid var(--third-color);
+    height: 50px;
+    line-height: 50px;
+}
+
+.svg-vid {
+    fill: var(--third-color);
+    width: 75px;
+    transition: 1s transform;
+    position: relative;
+}
+.active-rotate {
+    transform: rotate(360deg);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: var(--second-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--third-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--third-color-opacity);
+}
+.svg-vid-container {
+    position: relative;
+    width: 100px;
+    transition: 1s transform;
+}
+.d-none {
+    display: none;
+}
+.container-title-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+}
+.title {
+    padding: 5px;
+    font-size: 1.5em;
+    opacity: 0;
+    transition: 0.5s opacity;
+    border-left:1px solid var(--third-color);
+    margin:0 5px;
+}
+@media only screen and (max-width:900px){
+    section{
+        width: 90%;
+    }
+}
+@media only screen and (max-width:700px){
+    .title{
+        font-size:1.2em;
+    }
+    .svg-vid , .svg-vid-container{
+        width: 75px;
+    }
+    header{
+        grid-template-rows: 2fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            "logo logo logo"
+            "urls urls urls";
+        grid-gap: 15px;
+    }
+}
+@media only screen and (max-width:450px){
+    .container-title-svg{
+        flex-direction:column;
+    }
+    section{
+        width: 98%;
+        margin: 0 auto;
+        padding: 5px;
+    }
+}
+#url-youtube{
+    padding: 10px 5px;
+    border-radius: 4px;
+    outline: none;
+    background-color:var(--main-color);
+    border:1px solid var(--second-color);
+    display: block;
+    width: 100%;
+    color: var(--forth-color);
+}
+.input{
+    width: 80%;
+}
+.get-vid-container{
+    width: 20%;
+}
+.container-info-url{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    padding: 5px;
+    margin:5px;
+}
+.child:nth-child(1){
+    width: 20%;
+}
+.child:nth-child(2){
+    width: 78%;
+}
+.get-vid{
+    width: 95%;
+    background-color:var(--third-color-opacity);
+    padding:10px 5px;
+    border-radius: 4px;
+    outline: none;
+    color: var(--main-color);
+    border:1px solid var(--main-color);
+    cursor:not-allowed;
+}
+.get-vid.active{
+    color: var(--forth-color);
+    background-color: var(--third-color);
+    cursor: pointer;
+}
+#url-youtube:focus{
+    border:1px solid var(--forth-color);
+}
+.card{
+    word-break: break-all;
+    margin:5px 0;
+    /* position:relative; (We dont need it right now) */
+}
+.card-header{
+    padding:10px;
+    background-color:var(--third-color-opacity);
+    border-bottom:1px solid var(--main-color);
+}
+.card-body{
+    padding:10px;
+    background-color:var(--second-color);
+}
+
+/* maybe i back to this style of the copy */
+/* .copy-btn{
+    position:absolute;
+    bottom: 0;
+    left:0;
+    padding:5px 10px;
+    background-color:var(--third-color);
+    cursor:pointer;
+} */
+.result{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    grid-gap: 10px;
+    justify-content: center;
+}
+.copy-btn,.note-api{
+    background-color:var(--third-color-opacity);
+    padding:5px;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.dir-rtl{
+    direction:rtl;
+}
+.dir-ltr{
+    direction:ltr;
+}
+.card-body span {
+    background-color: var(--third-color);
+    padding: 5px;
+    border-radius: 6px;
+    display:inline-block;
+    margin:2px;
+}
+a{
+    text-decoration:none;
+    color:inherit;
+}
